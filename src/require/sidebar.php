@@ -12,13 +12,14 @@
 
     #menu {
       height: 100vh; /* Altura del 100% del viewport */
-      width: 250px;
+      width: 170px;
       background-color: black;
       position: fixed;
-      top: 50;
+      top: 0;
       left: 0;
       transition: left 0.5s ease;
-      /*position: ;*/
+      z-index: 1;
+      /*position:;*/
     }
 
     #menu ul {
@@ -37,23 +38,13 @@
       text-decoration: none; 
       color: inherit; 
     }
-
-    #menuToggle {
-      display: block;
-      position: fixed;
-      left: 10px;
-      top: 10px;
-      cursor: pointer;
-      z-index: 2;
-      color: #fff;
-    }
   </style>
 </head>
 <body>
 
 <div id="menu">
   <ul>
-      <li><a href="../Hasiera/index.php">Hasiera</a></li>
+      <li><a href="../Hasiera/index.php">Hasiera      </a><a class="closebtn">X</a></li>
       <li><a href="../GureInformazia/OurInfo.php">Gure Informazioa</a></li>
       <li><a href="../Katalogo/katalogoa.php">Katalogoa</a></li>
       <li><a href="../Notiziak/notiziak.php">Notiziak</a></li>
@@ -61,19 +52,27 @@
 
     </ul>
 </div>
-  
-
-  <div id="menuToggle">&#9776; Menua</div>
-
+<script
+  src="https://code.jquery.com/jquery-3.7.1.js"
+  integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+  crossorigin="anonymous"></script>
   <script>
     document.getElementById('menuToggle').addEventListener('click', function() {
+      openCloseTab();
+    });
+    
+    $(".closebtn").click(function(){
+      openCloseTab();
+    });
+
+    function openCloseTab(){
       var menu = document.getElementById('menu');
       if (menu.style.left === '0px') {
         menu.style.left = '-250px';
       } else {
         menu.style.left = '0px';
       }
-    });
+    }
   </script>
 
 </body>

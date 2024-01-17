@@ -1,119 +1,112 @@
-const btnsFavorite = document.querySelectorAll('.favorite');
-const products = document.querySelectorAll('.card-product');
-const counterFavorites = document.querySelector('.counter-favorite');
+$(document).ready(function () {
+    const btnsFavorite = $('.favorite');
+    const products = $('.card-product');
+    const counterFavorites = $('.counter-favorite');
 
-const containerListFavorites = document.querySelector(
-	'.container-list-favorites'
-);
-const listFavorites = document.querySelector('.list-favorites');
+    const containerListFavorites = $('.container-list-favorites');
+    const listFavorites = $('.list-favorites');
 
-let favorites = [];
+    let favorites = [];
 
-const updateFavoritesInLocalStorage = () => {
-	localStorage.setItem('favorites', JSON.stringify(favorites));
-};
+    const updateFavoritesInLocalStorage = () => {
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+    };
 
-const loadFavoritesFromLocalStorage = () => {
-	const storedFavorites = localStorage.getItem('favorites');
+    const loadFavoritesFromLocalStorage = () => {
+        const storedFavorites = localStorage.getItem('favorites');
 
-	if (storedFavorites) {
-		favorites = JSON.parse(storedFavorites);
-		showHTML();
-	}
-};
+        if (storedFavorites) {
+            favorites = JSON.parse(storedFavorites);
+            showHTML();
+        }
+    };
 
-const toggleFavorite = product => {
-	const index = favorites.findIndex(
-		element => element.id === product.id
-	);
+    const toggleFavorite = product => {
+		const index = favorites.findIndex(element => element.id === product.id);
+	
+		if (index > -1) {
+			favorites.splice(index, 1);
+			updateFavoritesInLocalStorage();
+		} else {
+			const productInfo = {
+				id: product.id,
+				title: product.title,
+				model: product.model, // Agrega el modelo del producto
+				name: product.name,   // Agrega el nombre del producto
+				price: product.price,
+			};
+	
+			favorites.push(productInfo);
+			updateFavoritesInLocalStorage();
+		}
+	};
+	
+	
+	 
 
-	if (index > -1) {
-		favorites.splice(index, 1);
-		updateFavoritesInLocalStorage();
-	} else {
-		favorites.push(product);
-		updateFavoritesInLocalStorage();
-	}
-};
+    const updateFavoriteMenu = () => {
+		listFavorites.html('');
+	
+		favorites.forEach(fav => {
+			const favoriteCard = $('<div>').addClass('card-favorite');
+			const titleElement = $('<p>').addClass('title').text(fav.title);
+			const modelElement = $('<p>').text(fav.model);
+			const nameElement = $('<p>').text(fav.name);  // Agrega el elemento para el nombre
+			const priceElement = $('<p>').text(fav.price);
+	
+			favoriteCard.append(titleElement, modelElement, nameElement, priceElement);
+			listFavorites.append(favoriteCard);
+		});
+	};
+	
+	
 
-const updateFavoriteMenu = () => {
-	listFavorites.innerHTML = '';
+    const showHTML = () => {
+        products.each(function () {
+            const contentProduct = $(this).find('.content-card-product');
+            const productId = contentProduct.data('productId');
+            const isFavorite = favorites.some(favorite => favorite.id === productId);
 
-	favorites.forEach(fav => {
-		// Crear un nuevo elemento 'div' para el producto favorito
-		const favoriteCard = document.createElement('div');
-		favoriteCard.classList.add('card-favorite');
+            const favoriteButton = $(this).find('.favorite');
+            const favoriteActiveButton = $(this).find('#added-favorite');
+            const favoriteRegularIcon = $(this).find('#favorite-regular');
 
-		// Crear y añadir el título del producto
-		const titleElement = document.createElement('p');
-		titleElement.classList.add('title');
-		titleElement.textContent = fav.title;
-		favoriteCard.appendChild(titleElement);
+            favoriteButton.toggleClass('favorite-active', isFavorite);
+            favoriteRegularIcon.toggleClass('active', isFavorite);
+            favoriteActiveButton.toggleClass('active', isFavorite);
+        });
 
-		// Crear y añadir el precio del producto
-		const priceElement = document.createElement('p');
-		priceElement.textContent = fav.price;
-		favoriteCard.appendChild(priceElement);
+        counterFavorites.text(favorites.length);
+        updateFavoriteMenu();
+    };
 
-		// Añadir el producto favorito a la lista
-		listFavorites.appendChild(favoriteCard);
-	});
-};
-
-const showHTML = () => {
-	products.forEach(product => {
-		const contentProduct = product.querySelector(
-			'.content-card-product'
-		);
-		const productId = contentProduct.dataset.productId;
-		const isFavorite = favorites.some(
-			favorite => favorite.id === productId
-		);
-
-		const favoriteButton = product.querySelector('.favorite');
-		const favoriteActiveButton =
-			product.querySelector('#added-favorite');
-		const favoriteRegularIcon = product.querySelector(
-			'#favorite-regular'
-		);
-		favoriteButton.classList.toggle('favorite-active', isFavorite);
-		favoriteRegularIcon.classList.toggle('active', isFavorite);
-		favoriteActiveButton.classList.toggle('active', isFavorite);
-	});
-
-	counterFavorites.textContent = favorites.length;
-	updateFavoriteMenu();
-};
-
-btnsFavorite.forEach(button => {
-	button.addEventListener('click', e => {
-		const card = e.target.closest('.content-card-product');
-
+    btnsFavorite.on('click', function (e) {
+		const card = $(this).closest('.content-card-product');
+	
 		const product = {
-			id: card.dataset.productId,
-			title: card.querySelector('h3').textContent,
-			price: card.querySelector('.price').textContent,
+			id: card.data('productId'),
+			title: card.find('h3').text(),
+			model: card.find('.modelo-item').text(), // Obtener el modelo
+			name: card.find('.titulo-item').text(),  // Obtener el nombre
+			price: card.find('.price').text(),
 		};
-
+	
 		toggleFavorite(product);
-
 		showHTML();
 	});
+	
+
+    const btnClose = $('#btn-close');
+    const buttonHeaderFavorite = $('#button-header-favorite');
+
+    buttonHeaderFavorite.on('click', () => {
+        containerListFavorites.toggleClass('show');
+    });
+
+    btnClose.on('click', () => {
+        containerListFavorites.removeClass('show');
+    });
+
+    loadFavoritesFromLocalStorage();
+    updateFavoriteMenu();
 });
-
-const btnClose = document.querySelector('#btn-close');
-const buttonHeaderFavorite = document.querySelector(
-	'#button-header-favorite'
-);
-
-buttonHeaderFavorite.addEventListener('click', () => {
-	containerListFavorites.classList.toggle('show');
-});
-
-btnClose.addEventListener('click', () => {
-	containerListFavorites.classList.remove('show');
-});
-
-
-loadFavoritesFromLocalStorage();
-updateFavoriteMenu();

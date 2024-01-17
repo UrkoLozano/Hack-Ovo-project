@@ -12,7 +12,83 @@
     <link rel="stylesheet" href="estilo.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="app.js" async></script>
-    
+    <style>
+        .container-list-favorites {
+            position: fixed;
+            top: 0;
+            right: 0;
+            transform: translateX(400px);
+            background-color: #555;
+            opacity: 0;
+            width: 400px;
+            height: 100vh;
+            transition: all 0.5s linear;
+        }
+
+        .container-list-favorites.show {
+            opacity: 1;
+            transform: translateX(0);
+            z-index: 1;
+        }
+
+        .header-favorite {
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-favorite i {
+            cursor: pointer;
+        }
+
+        .list-favorites {
+            padding: 35px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .list-favorites .card-favorite {
+            width: 100%;
+            background-color: #fff;
+            box-shadow: 0px 0px 20px #00000065;
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .card-favorite .title {
+            color: #000;
+            flex: 1;
+        }
+
+        .card-favorite p:last-child {
+            font-weight: 700;
+            font-size: 22px;
+            color: #000;
+        }
+
+        /* ------------------- */
+
+        #added-favorite {
+            color: red;
+            display: none;
+        }
+
+        #favorite-regular.active {
+            background-color: red;
+            display: none;
+        }
+
+        #added-favorite.active {
+            display: block;
+            color: red;
+        }
+    </style>
 </head>
 
 <body>
@@ -125,11 +201,11 @@
         <h2>Gure almazenaren katalogoa</h2>
     </center>
     <center>
-    <section class="contenedor">
-        <!-- Contenedor de elementos -->
-        <div class="contenedor-items">
+        <section class="contenedor">
+            <!-- Contenedor de elementos -->
+            <div class="contenedor-items">
 
-            <?php
+                <?php
     require_once("../../require/functions.php");
                 
     $conn = null;
@@ -162,21 +238,28 @@
 
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            echo "<div class='item'>                     
-                <img class='img-item' src='../../../public/" . $row["Irudia"] . "'>                     
-                <h3 class='marka-item'>" . $row["marka"] . "</h3>    
-                <p class='modelo-item'>" . $row["izena"] . "</p>                   
-            <p class='titulo-item'>" . $row["modeloa"] . "</p>
-            <span class='precio-item' style='color: red;'>" . $row["prezioaS"] . "€</span>
-            <p>" . $row["balorazioa"] . "⭐</p>  
-            <p hidden class='id-item'>" . $row["ErregistroID"] . "</p> 
-            <button class='favorite'>
-                <i class='fa-regular fa-heart' id='favorite-regular'></i>
-                <i class='fa-solid fa-heart' id='added-favorite'></i>
-            </button>
-            <button class='boton-item' data-erregistro-id='" . $row["ErregistroID"] . "'>Gehitu saskira</button>
-            </div>";
-    }
+            echo "<div class='item card-product'>                     
+                    <img class='img-item' src='../../../public/" . $row["Irudia"] . "'> 
+                        <div class='content-card-product' data-product-id='" . $row["ErregistroID"] . "'>                    
+                            <h3 class='marka-item'>" . $row["marka"] . "</h3>    
+                            <p class='modelo-item'>" . $row["modeloa"] . "</p>
+                            <p class='titulo-item'>" . $row["izena"] . "</p>
+                                <div class='footer-card-product'>
+                                    <span class='precio-item price' style='color: red;'>" . $row["prezioaS"] . "€</span><br></br> 
+                                    <p>" . $row["balorazioa"] . "⭐</p><br></br>     
+                                        <div class='container-buttons-card'>
+                                            <button class='favorite'>
+                                            <i class='fa-regular fa-heart' id='favorite-regular'></i>
+                                            <i class='fa-solid fa-heart' id='added-favorite'></i>
+                                            </button>
+                                        </div>
+                                </div>
+                        </div>
+                    <p hidden class='id-item'>" . $row["ErregistroID"] . "</p> 
+                    <button class='boton-item' data-erregistro-id='" . $row["ErregistroID"] . "'>Gehitu saskira</button>
+                </div>";
+        }
+        
 } else {
     echo "Ez dago datuak taulan.";
 }
@@ -187,27 +270,29 @@
     $conn->close();
     ?>
     </center>
+    </div>
+    <!-- Carrito de Compras -->
+    <div class="carrito" id="carrito">
+        <div class="header-carrito">
+            <h2>Zure Erosketa</h2>
         </div>
-        <!-- Carrito de Compras -->
-        <div class="carrito" id="carrito">
-            <div class="header-carrito">
-                <h2>Tu Carrito</h2>
-            </div>
-            <div class="carrito-items">
-            </div>
-            <div class="carrito-total">
-                <div class="fila">
-                    <strong>Tu Total</strong>
-                    <span class="carrito-precio-total">
-                    </span>
-                </div>
-                <button class="btn-pagar">Pagar <i class="fa-solid fa-bag-shopping"></i> </button>
-            </div>
+        <div class="carrito-items">
         </div>
+        <div class="carrito-total">
+            <div class="fila">
+                <strong>Totala</strong>
+                <span class="carrito-precio-total">
+                </span>
+            </div>
+            <button class="btn-pagar">Ordaindu<i class="fa-solid fa-bag-shopping"></i> </button>
+        </div>
+    </div>
     </section>
     <?php
     require_once("../../require/footer.php");
     ?>
+
+    <script src="gustokoena.js"></script>
 </body>
 
 </html>
