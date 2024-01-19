@@ -51,7 +51,7 @@ $(document).ready(function () {
 			const favoriteCard = $('<div>').addClass('card-favorite');
 			const titleElement = $('<p>').addClass('title').text(fav.title);
 			const modelElement = $('<p>').text(fav.model);
-			const nameElement = $('<p>').text(fav.name);  // Agrega el elemento para el nombre
+			const nameElement = $('<p>').text(fav.name);  
 			const priceElement = $('<p>').text(fav.price);
 	
 			favoriteCard.append(titleElement, modelElement, nameElement, priceElement);
@@ -86,8 +86,8 @@ $(document).ready(function () {
 		const product = {
 			id: card.data('productId'),
 			title: card.find('h3').text(),
-			model: card.find('.modelo-item').text(), // Obtener el modelo
-			name: card.find('.titulo-item').text(),  // Obtener el nombre
+			model: card.find('.modelo-item').text(), 
+			name: card.find('.titulo-item').text(),  
 			price: card.find('.price').text(),
 		};
 	
