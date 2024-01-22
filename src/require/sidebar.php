@@ -16,7 +16,7 @@
       background-color: black;
       position: fixed;
       top: 0;
-      left: 0;
+      left: -250px;
       transition: left 0.5s ease;
       z-index: 1;
       /*position:;*/

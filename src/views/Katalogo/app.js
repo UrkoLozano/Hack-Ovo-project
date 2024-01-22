@@ -24,7 +24,7 @@ $(document).ready(function () {
 
 // Eliminamos todos los elementos del carrito y lo ocultamos
 function pagarClicked() {
-    alert("Gracias por la compra");
+
     // Elimino todos los elementos del carrito
     $('.carrito-items').empty();
     actualizarTotalCarrito();
@@ -142,12 +142,29 @@ function restarCantidad() {
 
 // Elimino el item seleccionado del carrito
 function eliminarItemCarrito() {
-    $(this).closest('.carrito-item').remove();
+    var carritoItem = $(this).closest('.carrito-item');
+    var id = carritoItem.find('.id-item').text();
+
+    console.log('ID a eliminar:', id);
+
+    // Verificamos si el ID está presente en el array carritoIds antes de intentar eliminarlo
+    if (carritoIds.includes(id)) {
+        console.log('ID encontrado en carritoIds. Eliminando...');
+        // Eliminamos el ID del array carritoIds
+        var index = carritoIds.indexOf(id);
+        carritoIds.splice(index, 1);
+    } else {
+        console.log('ID no encontrado en carritoIds.');
+    }
+
+    console.log('Nuevo array de carritoIds:', carritoIds);
+
+    carritoItem.remove();
     // Actualizamos el total del carrito
     actualizarTotalCarrito();
 
     // La siguiente función controla si hay elementos en el carrito
-    // Si no hay, elimino el carrito
+    // Si no hay, eliminamos el carrito
     ocultarCarrito();
 }
 
@@ -164,6 +181,9 @@ function ocultarCarrito() {
 
         var items = $('.contenedor-items');
         items.css('width', '100%');
+
+        // Limpiamos el array de IDs del carrito
+        carritoIds = [];
     }
 }
 

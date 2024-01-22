@@ -163,20 +163,19 @@
         }
 
         .carrito {
-            
             border: 1px solid #666;
             width: 35%;
-            height: 80%;
+            height: 40%;
             margin-top: 20px;
             border-radius: 10px;
             overflow-y: auto;
             max-height: 80vh;
             position: fixed;
-            top: 100px;
+            top: 310px;
+            /* Ajusta la distancia desde la parte superior, considerando el header de 300px */
             right: 20px;
             transition: .3s;
             opacity: 0;
-
         }
 
 
@@ -458,25 +457,10 @@
             
         </div>
 
-        <div class="p15 menu-header">
-            <button id="button-header-favorite">
-                <i class="fa-solid fa-heart"></i>
-                <span class="counter-favorite">0</span>
-            </button>
+        <div >
+        
         </div>
 
-
-        <div class="container-list-favorites">
-            <div class="header-favorite">
-                <h3>Gustokoenak</h3>
-                <i class="fa-solid fa-xmark" id="btn-close"></i>
-            </div>
-            <hr />
-            <div class="list-favorites">
-                <div class="card-favorite">
-                </div>
-            </div>
-        </div>
 
     </div>
 
