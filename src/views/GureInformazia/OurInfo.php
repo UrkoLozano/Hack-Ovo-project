@@ -2,7 +2,7 @@
 <html lang="eus">
     
     <?php
-    require_once("../../require/header.php");
+    require_once("../../require/header2.php");
     require_once("../../require/sidebar.php");
     ?>
 

@@ -19,7 +19,10 @@ $(document).ready(function () {
     $('.boton-item').click(agregarAlCarritoClicked);
 
     // Agregamos funcionalidad al botón comprar
-    $('.btn-pagar').click(pagarClicked);
+    $('.btn-pagar').click(function(){
+            window.location.href = "../gurisaldu.php";
+    });
+
 });
 
 // Eliminamos todos los elementos del carrito y lo ocultamos

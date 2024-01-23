@@ -42,7 +42,7 @@ input[type="number"] {
     </style>
 </head>
 <?php
-    require_once("../../require/header.php");
+    require_once("../../require/header2.php");
     require_once("../../require/sidebar.php");
     ?>
 
