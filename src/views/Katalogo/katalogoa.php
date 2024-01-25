@@ -121,6 +121,18 @@
         function addToCart(productId) {
             alert("Producto añadido al carrito. Id: " + productId);
         }
+        
+        function redirectToOrdaindu() {
+        window.location.href = "Ordaindu/Ordaindu.php";
+        }
+
+        function guardarCantidad() {
+            // Obtener la cantidad a pagar
+            var cantidadAPagar = document.getElementById("carrito-precio-total").innerText;
+
+            // Guardar la cantidad en el almacenamiento local
+            localStorage.setItem('carrito-precio-total', cantidadAPagar);
+    }
     </script>
     <div class="filter-section">
         <form method="GET">
@@ -272,7 +284,7 @@
     </center>
     </div>
     <!-- Carrito de Compras -->
-    <div class="carrito" id="carrito">
+    <form action="../Ordaindu/Ordaindu.php" method="post"> <div class="carrito" id="carrito">
         <div class="header-carrito">
             <h2>Zure Erosketa</h2>
         </div>
@@ -281,12 +293,13 @@
         <div class="carrito-total">
             <div class="fila">
                 <strong>Totala</strong>
-                <span class="carrito-precio-total">
+                <span name="carrito-precio-total" class="carrito-precio-total">
                 </span>
             </div>
-            <button class="btn-pagar">Ordaindu<i class="fa-solid fa-bag-shopping"></i> </button>
+            <button  class="btn-pagar"><a href="../Ordaindu/Ordaindu.php">Ordaindu</a><i class="fa-solid fa-bag-shopping"></i> </button>
         </div>
-    </div>
+    </div></form>
+   
     </section>
     <?php
     require_once("../../require/footer.php");
