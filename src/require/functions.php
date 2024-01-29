@@ -1,6 +1,6 @@
 <?php
     function connect(&$conn){    
-        $dbName = "newlife";
+        $dbName = "hackovo";
         $conn = null;
         $servername = "localhost:3306";
         $username = "root";

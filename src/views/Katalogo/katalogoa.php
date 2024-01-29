@@ -1,4 +1,3 @@
-</html>
 <!DOCTYPE html>
 <html lang="eus">
 
@@ -118,9 +117,6 @@
             }
         });
 
-        function addToCart(productId) {
-            alert("Producto añadido al carrito. Id: " + productId);
-        }
         
         function redirectToOrdaindu() {
         window.location.href = "Ordaindu/Ordaindu.php";
@@ -284,7 +280,7 @@
     </center>
     </div>
     <!-- Carrito de Compras -->
-    <form action="../Ordaindu/Ordaindu.php" method="post"> <div class="carrito" id="carrito">
+    <div class="carrito" id="carrito">
         <div class="header-carrito">
             <h2>Zure Erosketa</h2>
         </div>
@@ -296,9 +292,9 @@
                 <span name="carrito-precio-total" class="carrito-precio-total">
                 </span>
             </div>
-            <button  class="btn-pagar"><a href="../Ordaindu/Ordaindu.php">Ordaindu</a><i class="fa-solid fa-bag-shopping"></i> </button>
+            <button  class="btn-pagar"><a style="none" href="../Ordaindu/Ordaindu.php">Ordaindu</a><i class="fa-solid fa-bag-shopping"></i> </button>
         </div>
-    </div></form>
+    </div>
    
     </section>
     <?php

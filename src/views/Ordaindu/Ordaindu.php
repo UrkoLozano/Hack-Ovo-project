@@ -4,13 +4,6 @@
     <link rel="stylesheet" href="../../css/estilos.css">
 </header>
 <body>
-    <p>Cantidad a pagar: <span class="carrito-precio-total" value="$valorRecibido"></span></p>
-<script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var cantidadGuardada = localStorage.getItem('carrito-precio-total');
-            document.getElementById('carrito-precio-total').innerText = cantidadGuardada;
-        });
-    </script>
 <div class="container">
 
     <form action="">
@@ -91,8 +84,7 @@
 </div>
 </form>
 <?php
-// Recuperar el valor del formulario
-$valorRecibido = $_POST['carrito-precio-total'];
+
 
 ?>
 

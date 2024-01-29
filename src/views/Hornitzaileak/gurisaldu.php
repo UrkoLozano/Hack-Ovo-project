@@ -62,14 +62,11 @@ input[type="number"] {
         function searchProducts(term) {
             var found = window.find(term, false, false, true, false, true, false);
             if (!found) {
-                alert("No se encontraron coincidencias.");
+       
             }
         }
     });
 
-    function addToCart(productId) {
-        alert("Producto añadido al carrito. Id: " + productId);
-    }
 </script>
 </script>
 

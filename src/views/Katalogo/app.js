@@ -49,7 +49,6 @@ function agregarAlCarritoClicked() {
 
     // Verificamos si el ID ya está en el carritoIds
     if (carritoIds.includes(id)) {
-        alert("El item ya se encuentra en el carrito");
         return;
     }
 
@@ -82,7 +81,6 @@ function agregarItemAlCarrito(titulo, precioNum, modelo, id, marka) {
 
     for (var i = 0; i < carritoItems.length; i++) {
         if ($(carritoItems[i]).val() == id) {
-            alert("El item ya se encuentra en el carrito");
             return; // Sale de la función si encuentra un duplicado
         }
     }
@@ -98,6 +96,7 @@ function agregarItemAlCarrito(titulo, precioNum, modelo, id, marka) {
                     <input type="text" value="1" class="carrito-item-cantidad" disabled>
                     <i class="fa-solid fa-plus sumar-cantidad"></i>
                 </div>
+                <p hidden class='id-elim'>${id}</p> 
                 <span class="carrito-item-precio">${precioNum}€</span>
             </div>
             <button class="btn-eliminar">
@@ -107,33 +106,25 @@ function agregarItemAlCarrito(titulo, precioNum, modelo, id, marka) {
 
     $('.carrito-items').append(itemCarritoContenido);
 
-    // Agregamos la funcionalidad eliminar al nuevo item
     $('.carrito-item:last .btn-eliminar').click(eliminarItemCarrito);
 
-    // Agregamos la funcionalidad restar cantidad del nuevo item
     $('.carrito-item:last .restar-cantidad').click(restarCantidad);
 
-    // Agregamos la funcionalidad sumar cantidad del nuevo item
     $('.carrito-item:last .sumar-cantidad').click(sumarCantidad);
 
-    // Actualizamos total
     actualizarTotalCarrito();
 }
 
-// Aumento en uno la cantidad del elemento seleccionado
 function sumarCantidad() {
 
     var cantidadActual = parseInt($(this).siblings('.carrito-item-cantidad').val());
     cantidadActual++; 
 
-    // Actualizar la cantidad
     $(this).siblings('.carrito-item-cantidad').val(cantidadActual);
 
-    // Actualizar el total
     actualizarTotalCarrito();
 }
 
-// Resto en uno la cantidad del elemento seleccionado
 function restarCantidad() {
     var cantidadActual = parseInt($(this).siblings('.carrito-item-cantidad').val());
     cantidadActual--;
@@ -143,31 +134,26 @@ function restarCantidad() {
     }
 }
 
-// Elimino el item seleccionado del carrito
 function eliminarItemCarrito() {
+
     var carritoItem = $(this).closest('.carrito-item');
-    var id = carritoItem.find('.id-item').text();
+    console.log(carritoItem);
+    var id = carritoItem.find('.id-elim').text();
+    
 
-    console.log('ID a eliminar:', id);
+    console.log(id);
+    console.log(carritoIds);
+    console.log(id);
 
-    // Verificamos si el ID está presente en el array carritoIds antes de intentar eliminarlo
-    if (carritoIds.includes(id)) {
-        console.log('ID encontrado en carritoIds. Eliminando...');
-        // Eliminamos el ID del array carritoIds
-        var index = carritoIds.indexOf(id);
-        carritoIds.splice(index, 1);
-    } else {
-        console.log('ID no encontrado en carritoIds.');
-    }
-
-    console.log('Nuevo array de carritoIds:', carritoIds);
+    var index = carritoIds.indexOf(id);
+    console.log(index);
+    carritoIds.splice(index, 1);
 
     carritoItem.remove();
-    // Actualizamos el total del carrito
+    console.log(carritoIds);
+
     actualizarTotalCarrito();
 
-    // La siguiente función controla si hay elementos en el carrito
-    // Si no hay, eliminamos el carrito
     ocultarCarrito();
 }
 
