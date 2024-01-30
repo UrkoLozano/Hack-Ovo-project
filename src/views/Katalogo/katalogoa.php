@@ -278,6 +278,22 @@
     $conn->close();
     ?>
     </center>
+    <script>
+    // Botoia klikatzen denean funtzioa exekutatu
+    $('.btn-pagar').on('click', function() {
+        $.ajax({
+            url: "../Ordaindu.php", // Datu-basearen script-aren izena
+            method: 'GET',
+            data: {}
+        })
+        .done(function(data) {
+        
+        })
+        .fail(function() {
+             alert('Errorea kargatzerakoan:', error);
+        });
+    });
+  </script>
     </div>
     <!-- Carrito de Compras -->
     <div class="carrito" id="carrito">
@@ -292,7 +308,7 @@
                 <span name="carrito-precio-total" class="carrito-precio-total">
                 </span>
             </div>
-            <button  class="btn-pagar"><a style="none" href="../Ordaindu/Ordaindu.php">Ordaindu</a><i class="fa-solid fa-bag-shopping"></i> </button>
+            <button  class="btn-pagar"><a style="text-decoration:'none'" href="../Ordaindu/Ordaindu.php">Ordaindu</a><i class="fa-solid fa-bag-shopping"></i> </button>
         </div>
     </div>
    
