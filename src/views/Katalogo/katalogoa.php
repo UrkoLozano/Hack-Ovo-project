@@ -1,4 +1,3 @@
-</html>
 <!DOCTYPE html>
 <html lang="eus">
 
@@ -118,9 +117,6 @@
             }
         });
 
-        function addToCart(productId) {
-            alert("Producto añadido al carrito. Id: " + productId);
-        }
         
         function redirectToOrdaindu() {
         window.location.href = "Ordaindu/Ordaindu.php";
@@ -282,9 +278,25 @@
     $conn->close();
     ?>
     </center>
+    <script>
+    // Botoia klikatzen denean funtzioa exekutatu
+    $('.btn-pagar').on('click', function() {
+        $.ajax({
+            url: "../Ordaindu.php", // Datu-basearen script-aren izena
+            method: 'GET',
+            data: {}
+        })
+        .done(function(data) {
+        
+        })
+        .fail(function() {
+             alert('Errorea kargatzerakoan:', error);
+        });
+    });
+  </script>
     </div>
     <!-- Carrito de Compras -->
-    <form action="../Ordaindu/Ordaindu.php" method="post"> <div class="carrito" id="carrito">
+    <div class="carrito" id="carrito">
         <div class="header-carrito">
             <h2><?= itzuli("saskia")?></h2>
         </div>
@@ -298,7 +310,7 @@
             </div>
             <button  class="btn-pagar"><a href="../Ordaindu/Ordaindu.php"><?= itzuli("pagar")?></a><i class="fa-solid fa-bag-shopping"></i> </button>
         </div>
-    </div></form>
+    </div>
    
     </section>
     <?php
