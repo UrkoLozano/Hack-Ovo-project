@@ -1,19 +1,68 @@
 <!DOCTYPE html>
-<html lang="eus">
-    
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guri buruz</title>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f9f9f9; /* Optional: Set a background color for the body */
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto; /* Adjust the top and bottom margin as needed */
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adjust the shadow properties as needed */
+            border-radius: 8px; /* Optional: Add border radius for rounded corners */
+            margin-bottom: 20px; /* Add some space between containers */
+        }
+
+        p {
+            color: #555;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #f2f2f2;
+            margin-top: auto; /* Push the footer to the bottom */
+        }
+    </style>
+</head>
+
+<body>
     <?php
-    require_once("../../require/header2.php");
+    require_once("../../require/header.php");
     require_once("../../require/sidebar.php");
     ?>
 
-    <div>
-    <h2 >Gure informazioa</h2>
-    <p>Haimar eta Urko gara, eta Hack-OVO enpresa sortu dugu. </b></p>
+    <div class="container">
+        <h2>Hack-ovo</h2>
+        <p><?= itzuli("hack-ovo"); ?></p>
     </div>
-    <iframe width="100%" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2915.3912448034343!2d-2.187762525016982!3d43.05423829096542!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd5036f59c0a5cc3%3A0x13ce0731367dd80d!2sC.%20Urdaneta%2C%2056%2C%2020240%20Ordizia%2C%20Gipuzkoa!5e0!3m2!1ses!2ses!4v1695376206783!5m2!1ses!2ses" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    
-    <?php
-    require_once("../../require/footer.php");
-    ?>
+
+    <div class="container">
+        <h2><?= itzuli("Helburuak1"); ?></h2>
+        <p><?= itzuli("helburuak2"); ?></p>
+    </div>
+
+    <div class="container">
+        <h2><?= itzuli("Bereizi"); ?></h2>
+        <h3><?= itzuli("Kali"); ?></h3>
+        <p><?= itzuli("beherakoa"); ?></p>
+    </div>
+
+    <footer>
+        <?php require_once("../../require/footer.php"); ?>
+    </footer>
+</body>
 
 </html>

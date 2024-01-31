@@ -454,8 +454,12 @@
             </button>
         </div>
 
-        <div>
-            
+        <div id="trans">
+            <?php 
+            $APP_DIR;
+            require_once("../language/translate.php"); 
+            require_once("../language/language.php");
+            ?>
         </div>
 
         <div class="p15 menu-header">

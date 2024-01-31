@@ -5,6 +5,7 @@
 </header>
 <body>
 <?php 
+    require_once("../../require/header2.php");
     require_once("../../require/functions.php"); 
 
     $conn = null;

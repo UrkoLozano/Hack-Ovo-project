@@ -98,8 +98,8 @@
     ?>
 
     <div class="search-form">
-        <input aria-label="Bilatu" id="search-input" placeholder="Bilatu produktua..." class="search-input" value="">
-        <button aria-label="Search" type="submit" class="search-button" id="search-button">Bilatu</button>
+        <input aria-label="Bilatu" id="search-input" placeholder="<?= itzuli("buscador")?>" class="search-input" value="">
+        <button aria-label="Search" type="submit" class="search-button" id="search-button"><?= itzuli("BilatuButt")?></button>
     </div>
 
     <script>
@@ -136,54 +136,54 @@
     </script>
     <div class="filter-section">
         <form method="GET">
-            <label for="categoryFilter">Kategoria:</label>
+            <label for="categoryFilter"><?= itzuli("Katergoria")?>:</label>
             <select id="categoryFilter" name="category">
                 <option value="all"
                     <?php if (isset($_GET['category']) && $_GET['category'] === 'Dena') echo 'selected="selected"'; ?>>
-                    Dena
+                    <?= itzuli("options1")?>
                 </option>
                 <option value="Prozesadorea"
                     <?php if (isset($_GET['category']) && $_GET['category'] === 'Prozesadorea') echo 'selected="selected"'; ?>>
-                    Prozesadoreak</option>
+                    <?= itzuli("Procesador")?></option>
                 <option value="Txartel Grafikoa"
                     <?php if (isset($_GET['category']) && $_GET['category'] === 'Txartel Grafikoa') echo 'selected="selected"'; ?>>
-                    Txartel Grafikoak</option>
+                    <?= itzuli("TxartGrafik")?></option>
                 <option value="Plaka Basea"
                     <?php if (isset($_GET['category']) && $_GET['category'] === 'Plaka Basea') echo 'selected="selected"'; ?>>
-                    Plaka Baseak</option>
+                    <?= itzuli("plaka")?></option>
                 <option value="Disko Gogorra"
                     <?php if (isset($_GET['category']) && $_GET['category'] === 'Disko Gogorra') echo 'selected="selected"'; ?>>
-                    Disko Gogorrak</option>
+                    <?= itzuli("disko")?></option>
                 <option value="Ram Memoria"
                     <?php if (isset($_GET['category']) && $_GET['category'] === 'Ram Memoria') echo 'selected="selected"'; ?>>
-                    Ram Memoriak</option>
+                    <?= itzuli("ram")?></option>
                 <option value="Sagua"
                     <?php if (isset($_GET['category']) && $_GET['category'] === 'Sagua') echo 'selected="selected"'; ?>>
-                    Saguak</option>
+                    <?= itzuli("Raton")?></option>
                 <option value="Aurikularrak"
                     <?php if (isset($_GET['category']) && $_GET['category'] === 'Aurikularrak') echo 'selected="selected"'; ?>>
-                    Aurikularrak</option>
+                    <?= itzuli("Kasko")?></option>
                 <option value="Teklatua"
                     <?php if (isset($_GET['category']) && $_GET['category'] === 'Teklatua') echo 'selected="selected"'; ?>>
-                    Teklatuak</option>
+                    <?= itzuli("Teklatu")?></option>
                 <option value="Pantaila"
                     <?php if (isset($_GET['category']) && $_GET['category'] === 'Pantaila') echo 'selected="selected"'; ?>>
-                    Pantailak</option>
+                    <?= itzuli("pantaia")?></option>
                 <option value="Portatila"
                     <?php if (isset($_GET['category']) && $_GET['category'] === 'Portatila') echo 'selected="selected"'; ?>>
-                    Portatilak</option>
+                    <?= itzuli("Portatil")?></option>
             </select>
-            <label for="brandFilter">Marka:</label>
-            <input type="textarea" id="brandFilter" name="brand" placeholder="idatzi marka">
+            <label for="brandFilter"><?= itzuli("Marka")?>:</label>
+            <input type="textarea" id="brandFilter" name="brand" placeholder="<?= itzuli("markaIdatz")?>">
 
-            <label for="priceFilter">Prezioa:</label>
-            <input type="number" id="priceFilter" name="price" placeholder="prezio maximoa">
+            <label for="priceFilter"><?= itzuli("Prezio")?>:</label>
+            <input type="number" id="priceFilter" name="price" placeholder="<?= itzuli("Prezioa")?>">
 
-            <label for="balorazioFilter">Balorazioa:</label>
+            <label for="balorazioFilter"><?= itzuli("Valor")?>:</label>
             <select id="balorazioFilter" name="balorazioa">
                 <option value="all"
                     <?php if (isset($_GET['balorazioa']) && $_GET['balorazioa'] === 'all') echo 'selected="selected"'; ?>>
-                    Denak</option>
+                    <?= itzuli("Balorazio")?></option>
                 <option value="1"
                     <?php if (isset($_GET['balorazioa']) && $_GET['balorazioa'] === '1') echo 'selected="selected"'; ?>>
                     1⭐
@@ -206,11 +206,11 @@
                 </option>
             </select>
             <br><br>
-            <button aria-label="Filtratu" type="submit" class="filter-button" id="filter-button">Filtratu</button>
+            <button aria-label="Filtratu" type="submit" class="filter-button" id="filter-button"><?= itzuli("filterButt")?></button>
         </form>
     </div>
     <center>
-        <h2>Gure almazenaren katalogoa</h2>
+        <h2><?= itzuli("Almacen")?></h2>
     </center>
     <center>
         <section class="contenedor">
@@ -268,7 +268,7 @@
                                 </div>
                         </div>
                     <p hidden class='id-item'>" . $row["ErregistroID"] . "</p> 
-                    <button class='boton-item' data-erregistro-id='" . $row["ErregistroID"] . "'>Gehitu saskira</button>
+                    <button class='boton-item' data-erregistro-id='" . $row["ErregistroID"] . "'>" . itzuli("SaskiButt") ."</button>
                 </div>";
         }
         
@@ -286,17 +286,17 @@
     <!-- Carrito de Compras -->
     <form action="../Ordaindu/Ordaindu.php" method="post"> <div class="carrito" id="carrito">
         <div class="header-carrito">
-            <h2>Zure Erosketa</h2>
+            <h2><?= itzuli("saskia")?></h2>
         </div>
         <div class="carrito-items">
         </div>
         <div class="carrito-total">
             <div class="fila">
-                <strong>Totala</strong>
+                <strong><?= itzuli("total")?></strong>
                 <span name="carrito-precio-total" class="carrito-precio-total">
                 </span>
             </div>
-            <button  class="btn-pagar"><a href="../Ordaindu/Ordaindu.php">Ordaindu</a><i class="fa-solid fa-bag-shopping"></i> </button>
+            <button  class="btn-pagar"><a href="../Ordaindu/Ordaindu.php"><?= itzuli("pagar")?></a><i class="fa-solid fa-bag-shopping"></i> </button>
         </div>
     </div></form>
    
