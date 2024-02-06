@@ -47,8 +47,8 @@ input[type="number"] {
     ?>
 
 <div class="search-form">
-    <input aria-label="Bilatu" id="search-input" placeholder="Bilatu produktua..." class="search-input" value="">
-    <button aria-label="Search" type="submit" class="search-button" id="search-button">Bilatu</button>
+    <input aria-label="Bilatu" id="search-input" placeholder="<?= itzuli("buscador")?>" class="search-input" value="">
+    <button aria-label="Search" type="submit" class="search-button" id="search-button"><?= itzuli("BilatuButt")?></button>
 </div>
 
 <script>
@@ -70,78 +70,10 @@ input[type="number"] {
 </script>
 </script>
 
-<div class="filter-section">
-    <form method="GET">
-        <label for="categoryFilter">Kategoria:</label>
-        <select id="categoryFilter" name="category">
-            <option value="all"
-                <?php if (isset($_GET['category']) && $_GET['category'] === 'Dena') echo 'selected="selected"'; ?>>Dena
-            </option>
-            <option value="Prozesadorea"
-                <?php if (isset($_GET['category']) && $_GET['category'] === 'Prozesadorea') echo 'selected="selected"'; ?>>
-                Prozesadoreak</option>
-            <option value="Txartel Grafikoa"
-                <?php if (isset($_GET['category']) && $_GET['category'] === 'Txartel Grafikoa') echo 'selected="selected"'; ?>>
-                Txartel Grafikoak</option>
-            <option value="Plaka Basea"
-                <?php if (isset($_GET['category']) && $_GET['category'] === 'Plaka Basea') echo 'selected="selected"'; ?>>
-                Plaka Baseak</option>
-            <option value="Disko Gogorra"
-                <?php if (isset($_GET['category']) && $_GET['category'] === 'Disko Gogorra') echo 'selected="selected"'; ?>>
-                Disko Gogorrak</option>
-            <option value="Ram Memoria"
-                <?php if (isset($_GET['category']) && $_GET['category'] === 'Ram Memoria') echo 'selected="selected"'; ?>>
-                Ram Memoriak</option>
-            <option value="Sagua"
-                <?php if (isset($_GET['category']) && $_GET['category'] === 'Sagua') echo 'selected="selected"'; ?>>
-                Saguak</option>
-            <option value="Aurikularrak"
-                <?php if (isset($_GET['category']) && $_GET['category'] === 'Aurikularrak') echo 'selected="selected"'; ?>>
-                Aurikularrak</option>
-            <option value="Teklatua"
-                <?php if (isset($_GET['category']) && $_GET['category'] === 'Teklatua') echo 'selected="selected"'; ?>>
-                Teklatuak</option>
-            <option value="Pantaila"
-                <?php if (isset($_GET['category']) && $_GET['category'] === 'Pantaila') echo 'selected="selected"'; ?>>
-                Pantailak</option>
-            <option value="Portatila"
-                <?php if (isset($_GET['category']) && $_GET['category'] === 'Portatila') echo 'selected="selected"'; ?>>
-                Portatilak</option>
-        </select>
-        <label for="brandFilter">Marka:</label>
-        <input type="textarea" id="brandFilter" name="brand" placeholder="idatzi marka">
 
-        <label for="priceFilter">Prezioa:</label>
-        <input type="number" id="priceFilter" name="price" placeholder="prezio maximoa">
-
-        <label for="balorazioFilter">Balorazioa:</label>
-        <select id="balorazioFilter" name="balorazioa">
-            <option value="all"
-                <?php if (isset($_GET['balorazioa']) && $_GET['balorazioa'] === 'all') echo 'selected="selected"'; ?>>
-                Denak</option>
-            <option value="1"
-                <?php if (isset($_GET['balorazioa']) && $_GET['balorazioa'] === '1') echo 'selected="selected"'; ?>>1⭐
-            </option>
-            <option value="2"
-                <?php if (isset($_GET['balorazioa']) && $_GET['balorazioa'] === '2') echo 'selected="selected"'; ?>>2⭐
-            </option>
-            <option value="3"
-                <?php if (isset($_GET['balorazioa']) && $_GET['balorazioa'] === '3') echo 'selected="selected"'; ?>>3⭐
-            </option>
-            <option value="4"
-                <?php if (isset($_GET['balorazioa']) && $_GET['balorazioa'] === '4') echo 'selected="selected"'; ?>>4⭐
-            </option>
-            <option value="5"
-                <?php if (isset($_GET['balorazioa']) && $_GET['balorazioa'] === '5') echo 'selected="selected"'; ?>>5⭐
-            </option>
-        </select>
-        <br><br>
-        <button aria-label="Filtratu" type="submit" class="filter-button" id="filter-button">Filtratu</button>
-    </form>
-</div>
 
 <center>
-    <h2>Gure almazenaren katalogoa</h2>
+    <h2><?= itzuli("Almacen") ?></h2>
 </center>
 <center>
     <?php
@@ -155,7 +87,7 @@ input[type="number"] {
     $priceFilter = isset($_GET['price']) ? $_GET['price'] : '';
     $balorazioFilter = isset($_GET['balorazioa']) ? $_GET['balorazioa'] : 'all';
 
-    $sql = "SELECT * FROM almazena WHERE 1";
+    $sql = "SELECT * FROM hackovo.almazena as a INNER JOIN hackovo.prodmota as p ON p.idProdukt = a.prd_mota_id WHERE 1";
 
     if ($categoryFilter !== 'all') {
         $sql .= " AND izena = '$categoryFilter'";
@@ -178,8 +110,8 @@ input[type="number"] {
     <form method='POST'>
         <table border='1'>
             <tr>
-                <th>Produktua</th>
-                <th>Kantitatea</th>
+                <th><?= itzuli("Prod") ?></th>
+                <th><?= itzuli("Cant") ?></th>
             </tr>
 
             <?php
@@ -188,7 +120,7 @@ input[type="number"] {
         while ($row = $result->fetch_assoc()) {
             echo "
             <tr>
-                <td>". $row['izena'] . " " . $row['marka'] . " " . $row['modeloa'] . "<a hidden>" . $row['kantitatea'] . " " . $row['ErregistroID'] . " </a></td>
+                <td>". itzuli ($row["trans_key"]) . " " . $row['marka'] . " " . $row['modeloa'] . "<a hidden>" . $row['kantitatea'] . " " . $row['ErregistroID'] . " </a></td>
                 <td><input type='number' min='0' value='0'  name='kantitatea[" . $row['ErregistroID'] . "]'></td>
             </tr>
             ";
@@ -199,7 +131,7 @@ input[type="number"] {
     ?>
         
     </table>
-        <button class='saldu'> Saldu </button>
+        <button class='saldu'> <?= itzuli("Sald")?> </button>
     </form>
      
     <?php

@@ -418,3 +418,7 @@ main {
     display: block;
     color: red;
 }
+
+.hidden {
+    display: none;
+}

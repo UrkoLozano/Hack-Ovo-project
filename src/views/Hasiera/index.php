@@ -32,7 +32,5 @@
     </main>
 
     <?php
-    require_once("../../require/footer.php");
+    require_once("../../require/layoutBottom.php");
     ?>
-
-</html>

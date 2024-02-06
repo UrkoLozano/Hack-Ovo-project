@@ -10,20 +10,77 @@ $(document).ready(function () {
     $('.btn-eliminar').click(eliminarItemCarrito);
 
     // Agrego funcionalidad al botón sumar cantidad
-    $('.sumar-cantidad').click(sumarCantidad);
+    $('.sumar-cantidad').click(function () {
+        sumarCantidad(this);
+        guardarNumeroEnSession(this);
+    });
 
     // Agrego funcionalidad al botón restar cantidad
-    $('.restar-cantidad').click(restarCantidad);
+    $('.restar-cantidad').click(function () {
+        restarCantidad(this);
+        guardarNumeroEnSession(this);
+    });
 
     // Agregamos funcionalidad al botón Agregar al carrito
-    $('.boton-item').click(agregarAlCarritoClicked);
+    $('.boton-item').click(
+        function () {
+            agregarAlCarritoClicked(this);
+            guardarInfoCarritoEnSession(this);
+        });
 
     // Agregamos funcionalidad al botón comprar
-    $('.btn-pagar').click(function(){
-            window.location.href = "../gurisaldu.php";
+    $('.btn-pagar').click(function () {
+        window.location.href = "../gurisaldu.php";
     });
 
 });
+
+function guardarInfoCarritoEnSession(elem) {
+    //Bidali nahi den informazioa LORTU
+    var item = $(elem).closest('.item');
+    var id = item.find('.id-item').text();
+    var titulo = item.find('p.titulo-item').text(); 
+
+    $.ajax({
+            url: "post.php",
+            type: 'POST',
+            data: {
+                action: "addInCart",
+                indizea: "cart",
+                titulua: titulo,
+                balioa: id
+            }
+        })
+        .done(function (itzultzenDuena) {
+            alert(itzultzenDuena);
+        })
+        .fail(function () {})
+        .always(function () {});
+
+}
+
+function guardarNumeroEnSession(elem) {
+    console.log($(elem).siblings());
+    var cantidadActual = parseInt($(elem).siblings('.carrito-item-cantidad').val());
+    var idActual = parseInt($(elem).siblings('p.carrito-item-id').text());
+
+    $.ajax({
+        url: "post.php",
+        type: 'POST',
+        data: {
+            action: "changeNumberInCart",
+            indizea: "cart",
+            balioa: idActual,
+            zenbatekoa: cantidadActual
+        }
+    })
+    .done(function (itzultzenDuena) {
+        alert(itzultzenDuena);
+    })
+    .fail(function () {})
+    .always(function () {});
+
+}
 
 // Eliminamos todos los elementos del carrito y lo ocultamos
 function pagarClicked() {
@@ -38,8 +95,9 @@ function pagarClicked() {
 }
 
 // Función que controla el botón clickeado de agregar al carrito
-function agregarAlCarritoClicked() {
-    var item = $(this).closest('.item');
+function agregarAlCarritoClicked(elem) {
+
+    var item = $(elem).closest('.item');
     var titulo = item.find('.titulo-item').text();
     var precio = item.find('.precio-item').text();
     var precioNum = parseFloat(precio.replace('.', ','));
@@ -59,6 +117,7 @@ function agregarAlCarritoClicked() {
     agregarItemAlCarrito(titulo, precioNum, modeloa, id, marka);
 
     hacerVisibleCarrito();
+
 }
 
 // Función que hace visible el carrito
@@ -88,12 +147,14 @@ function agregarItemAlCarrito(titulo, precioNum, modelo, id, marka) {
     var itemCarritoContenido = `
         <div class="carrito-item">
             <div class="carrito-item-detalles">
+                
                 <p class="carrito-item-modelo">${modelo}</p>
                 <p class="carrito-item-marka">${marka}</p>
                 <p class="carrito-item-titulo">${titulo}</p>
                 <div class="selector-cantidad">
                     <i class="fa-solid fa-minus restar-cantidad"></i>
                     <input type="text" value="1" class="carrito-item-cantidad" disabled>
+                    <p class="carrito-item-id hidden">${id}</p>
                     <i class="fa-solid fa-plus sumar-cantidad"></i>
                 </div>
                 <p hidden class='id-elim'>${id}</p> 
@@ -108,28 +169,34 @@ function agregarItemAlCarrito(titulo, precioNum, modelo, id, marka) {
 
     $('.carrito-item:last .btn-eliminar').click(eliminarItemCarrito);
 
-    $('.carrito-item:last .restar-cantidad').click(restarCantidad);
+    $('.carrito-item:last .restar-cantidad').click(function () {
+        restarCantidad(this);
+        guardarNumeroEnSession(this);
+    });
 
-    $('.carrito-item:last .sumar-cantidad').click(sumarCantidad);
-
-    actualizarTotalCarrito();
-}
-
-function sumarCantidad() {
-
-    var cantidadActual = parseInt($(this).siblings('.carrito-item-cantidad').val());
-    cantidadActual++; 
-
-    $(this).siblings('.carrito-item-cantidad').val(cantidadActual);
+    $('.carrito-item:last .sumar-cantidad').click(function () {
+        sumarCantidad(this);
+        guardarNumeroEnSession(this);
+    });
 
     actualizarTotalCarrito();
 }
 
-function restarCantidad() {
-    var cantidadActual = parseInt($(this).siblings('.carrito-item-cantidad').val());
+function sumarCantidad(elem) {
+
+    var cantidadActual = parseInt($(elem).siblings('.carrito-item-cantidad').val());
+    cantidadActual++;
+
+    $(elem).siblings('.carrito-item-cantidad').val(cantidadActual);
+
+    actualizarTotalCarrito();
+}
+
+function restarCantidad(elem) {
+    var cantidadActual = parseInt($(elem).siblings('.carrito-item-cantidad').val());
     cantidadActual--;
     if (cantidadActual >= 1) {
-        $(this).siblings('.carrito-item-cantidad').val(cantidadActual);
+        $(elem).siblings('.carrito-item-cantidad').val(cantidadActual);
         actualizarTotalCarrito();
     }
 }
@@ -139,7 +206,7 @@ function eliminarItemCarrito() {
     var carritoItem = $(this).closest('.carrito-item');
     console.log(carritoItem);
     var id = carritoItem.find('.id-elim').text();
-    
+
 
     console.log(id);
     console.log(carritoIds);
@@ -195,8 +262,3 @@ function actualizarTotalCarrito() {
     total = Math.round(total * 100) / 100;
     $('.carrito-precio-total').text(total.toLocaleString("es") + "€");
 }
-
-
-
-
-

@@ -3,7 +3,7 @@
         <option value="eus" <?php                        
                             if (isset($_POST['aukeratutakoHizkuntza']) && $_POST['aukeratutakoHizkuntza'] === 'eus') {
                                 echo 'selected';
-                            } elseif (!isset($_POST['aukeratutakoHizkuntza']) && isset($_SESSION['_LANGUAGE']) && $_SESSION['_LANGUAGE'] === 'eus') {
+                            } elseif (!isset($_POST['aukeratutakoHizkuntza']) && isset($_SESSION["_LANGUAGE"]) && $_SESSION["_LANGUAGE"] === 'eus') {
                                 
                                 echo 'selected';
                             }
@@ -13,7 +13,7 @@
                             
                             if (isset($_POST['aukeratutakoHizkuntza']) && $_POST['aukeratutakoHizkuntza'] === 'es') {
                                 echo 'selected';
-                            } elseif (!isset($_POST['aukeratutakoHizkuntza']) && isset($_SESSION['_LANGUAGE']) && $_SESSION['_LANGUAGE'] === 'es') {
+                            } elseif (!isset($_POST['aukeratutakoHizkuntza']) && isset($_SESSION["_LANGUAGE"]) && $_SESSION["_LANGUAGE"] === 'es') {
                                 
                                 echo 'selected';
                             }
@@ -22,7 +22,7 @@
         <option value="en" <?php
                             if (isset($_POST['aukeratutakoHizkuntza']) && $_POST['aukeratutakoHizkuntza'] === 'en') {
                                 echo 'selected';
-                            } elseif (!isset($_POST['aukeratutakoHizkuntza']) && isset($_SESSION['_LANGUAGE']) && $_SESSION['_LANGUAGE'] === 'en') {
+                            } elseif (!isset($_POST['aukeratutakoHizkuntza']) && isset($_SESSION["_LANGUAGE"]) && $_SESSION["_LANGUAGE"] === 'en') {
                                 
                                 echo 'selected';
                             }

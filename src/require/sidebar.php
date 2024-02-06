@@ -53,11 +53,11 @@
 
 <div id="menu">
   <ul>
-      <li><a href="../Hasiera/index.php">Hasiera</a></li>
-      <li><a href="../GureInformazia/OurInfo.php">Gure Informazioa</a></li>
-      <li><a href="../Katalogo/katalogoa.php">Katalogoa</a></li>
-      <li><a href="../Notiziak/notiziak.php">Notiziak</a></li>
-      <li><a href="../Hornitzaileak/hornitzaileak.php">Hornitzaileak</a></li>
+      <li><a href="../Hasiera/index.php"><?= itzuli("Has") ?></a></li>
+      <li><a href="../GureInformazia/OurInfo.php"><?= itzuli("OurInf") ?></a></li>
+      <li><a href="../Katalogo/katalogoa.php"><?= itzuli("Katalogo") ?></a></li>
+      <li><a href="../Notiziak/notiziak.php"><?= itzuli("Notiziak") ?></a></li>
+      <li><a href="../Hornitzaileak/hornitzaileak.php"><?= itzuli("Hornitzailea") ?></a></li>
   </ul>
   <a class="closebtn" href="#"><i class="fas fa-times"></i></a>
 </div>

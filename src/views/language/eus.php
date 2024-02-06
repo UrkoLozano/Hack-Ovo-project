@@ -43,11 +43,16 @@ return[
     "saskia" => "Zure Erosketa",
     "total" => "Totala",
     "pagar" => "Ordaindu",
+    "Prod" => "Produktua",
+    "Cant" => "Kopurua",
+    "Sald" => "Saldu",
+
 
     //Notiziak
     "HasDat" => "Hasierako data",
     "AmaiDat" => "Amaierako data",
     "Data" => "Data",
+    "aukeraHizkuntza" => "eus",
     "aurr" => "aurreragokoak",
     "lehen" => "lehenagokoak",
     "Berri" => "Berri informatikoak",
@@ -115,21 +120,23 @@ return[
     //hornitzaileform
 
     "horniForm" => "Hornitzaile formularioa",
-    "telZen" => "Telefono zenbakia:",
-    "name" => "Izena:",
+    "telZen" => "Telefono zenbakia",
+    "name" => "Izena",
     "Nan" => "NAN", 
     "mota" => "Hornitzaile mota",
     "op1" => "Enpresa",
     "op2" => "Pertsona",
     "Helb" => "Helbidea",
     "Zerb" => "Zerbitzua",
+    "Gorde" => "Gorde hornitzailea",
 
     //pasarela de pago
     "zureDatu" => "ZURE DATUAK",
     "nan" => "Nan",
-    "herria" => "Herria:",
+    "herria" => "Herria",
     "placeHolder" => "kalea portala, pisua etxea",
-    "pais" => "Herrialdea:",
+    "helbidea" => "Helbidea",
+    "pais" => "Herrialdea",
     "pk" => "Posta Kodea:",
     "OrdSek" => "ORDAINKETA SEKZIOA",
     "TxartName" => "Txarteleko Izena:",
@@ -147,4 +154,5 @@ return[
     "Hornitzailea" => "Hornitzaileak",
     "Fav" => "Gustokoenak",
     "aldatu" => "Aldatu",
+    "footer" => "2023 Hack-Ovo - Eskubide guztiak erreserbatuta",
 ];

@@ -42,11 +42,15 @@ return[
     "saskia" => "Your Purchase",
     "total" => "Total",
     "pagar" => "Pay",
+    "Prod" => "Product",
+    "Cant" => "Amount",
+    "Sald" => "Sell",
 
     // News
     "HasDat" => "Start Date",
     "AmaiDat" => "End Date",
     "Data" => "Date",
+    "aukeraHizkuntza" => "en",
     "aurr" => "Previous",
     "lehen" => "Earlier",
     "Berri" => "Tech News",
@@ -114,26 +118,28 @@ return[
 
     // Supplier Form
     "horniForm" => "Supplier Form",
-    "telZen" => "Phone Number:",
-    "name" => "Name:",
-    "Nan" => "ID Number",
+    "telZen" => "Phone Number",
+    "name" => "Name",
+    "Nan" => "NIC",
     "mota" => "Type of Supplier",
     "op1" => "Company",
     "op2" => "Individual",
     "Helb" => "Address",
     "Zerb" => "Service",
+    "Gorde" => "Save suplier",
 
     // Payment Gateway
     "zureDatu" => "YOUR DETAILS",
     "nan" => "NIC",
     "herria" => "City:",
     "placeHolder" => "street, floor, house number",
-    "pais" => "Country:",
-    "pk" => "Postal Code:",
+    "helbidea" => "Direction",
+    "pais" => "Country",
+    "pk" => "Postal Code",
     "OrdSek" => "PAYMENT SECTION",
-    "TxartName" => "Cardholder Name:",
+    "TxartName" => "Cardholder Name",
     "txart" => "Accepted Cards",
-    "TxartZen" => "Card Number:",
+    "TxartZen" => "Card Number",
     "epemuga" => "Expiration Date",
     "pagarPasarela" => "Pay",
 
@@ -145,5 +151,6 @@ return[
     "Notiziak" => "News",
     "Hornitzailea" => "Suppliers",
     "Fav" => "Favorites",
-    "aldatu" => "Change"
+    "aldatu" => "Change",
+    "footer" => "2023 Hack-Ovo - All rights reserved",
 ];

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guri buruz</title>
     <link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <!-- TODO: hemen ere layout top jarri -->
     <style>
         body {
             display: flex;
@@ -60,9 +61,8 @@
         <p><?= itzuli("beherakoa"); ?></p>
     </div>
 
-    <footer>
-        <?php require_once("../../require/footer.php"); ?>
-    </footer>
-</body>
+        <!-- TODO: hemen APP DIR ERABILI layoutBottom dagoen hoietan -->
 
-</html>
+    <?php
+    require_once("../../require/layoutBottom.php");
+    ?>

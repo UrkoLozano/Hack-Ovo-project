@@ -1,21 +1,20 @@
-<head>
+<?php
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hack-Ovo</title>
-    <link rel="icon" href="../../../public/Hack-OvoLogo.PNG" type="image/png">
-    <link rel="stylesheet" type="text/css" href="../../css/style.css">
-    <script src="https://kit.fontawesome.com/7f605dc8fe.js" crossorigin="anonymous"></script>
+$KARPETA_DIR = "/VisualStudios/Hack-OVO";
+define('APP_DIR', $_SERVER['DOCUMENT_ROOT'] . $KARPETA_DIR);
+require_once(APP_DIR . "/src/require/layoutTop.php");
+?>
 
     <style>
-        .list-favorites{
-            
+        .list-favorites {
+
             width: 360px;
             height: 80%;
             overflow-y: auto;
-            border: 1px solid #ccc; 
-            
+            border: 1px solid #ccc;
+
         }
+
         .menu-header button {
 
             border: none;
@@ -122,14 +121,17 @@
         }
 
         .img-item {
-        width: 200px; /* Ancho deseado */
-        height: 150px; /* Altura deseada */
-        overflow: hidden; /* Oculta partes de las imágenes que excedan las dimensiones */
+            width: 200px;
+            /* Ancho deseado */
+            height: 150px;
+            /* Altura deseada */
+            overflow: hidden;
+            /* Oculta partes de las imágenes que excedan las dimensiones */
         }
 
         .img-item img {
-        width: 100%;
-        height: auto;
+            width: 100%;
+            height: auto;
         }
 
         .contenedor .contenedor-items .item:hover {
@@ -163,7 +165,7 @@
         }
 
         .carrito {
-            
+
             border: 1px solid #666;
             width: 35%;
             height: 80%;
@@ -175,8 +177,11 @@
             top: 100px;
             right: 20px;
             transition: .3s;
-            opacity: 0;
 
+        }
+
+        .carrito-hidden {
+            opacity: 0;
         }
 
 
@@ -335,7 +340,7 @@
             font-size: 22px;
             position: relative;
             cursor: pointer;
-            float: right;
+            float: right ;
         }
 
         .menu-header button:hover {
@@ -446,21 +451,22 @@
 </head>
 
 <body>
+<?php
+        require_once("../language/translate.php");
+?>
+
+
     <div class="header">
 
         <div class="p15">
             <button id="menuToggle">
-                &#9776; Menua
+                &#9776; Menu
             </button>
         </div>
-
         <div id="trans">
-            <?php 
-            $APP_DIR;
-            require_once("../language/translate.php"); 
-            require_once("../language/language.php");
-            ?>
-        </div>
+        <?php
+        require_once("../language/language.php");
+        ?>
 
         <div class="p15 menu-header">
             <button id="button-header-favorite">
@@ -469,10 +475,11 @@
             </button>
         </div>
 
+    </div>
 
         <div class="container-list-favorites">
             <div class="header-favorite">
-                <h3>Gustokoenak</h3>
+                <h3><?= itzuli("Fav") ?></h3>
                 <i class="fa-solid fa-xmark" id="btn-close"></i>
             </div>
             <hr />
@@ -484,4 +491,3 @@
 
     </div>
 
-</body>

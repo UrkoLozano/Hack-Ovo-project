@@ -42,11 +42,16 @@ return[
     "saskia" => "Tu compra",
     "total" => "Total",
     "pagar" => "Pagar",
+    "Prod" => "Producto",
+    "Cant" => "Cantidad",
+    "Sald" => "Vender",
+
 
     //Notiziak
     "HasDat" => "Fecha de inicio",
     "AmaiDat" => "Fecha de finalización",
     "Data" => "Fecha",
+    "aukeraHizkuntza" => "es",
     "aurr" => "posteriores",
     "lehen" => "anteriores",
     "Berri" => "Noticias recientes",
@@ -115,26 +120,28 @@ return[
     //hornitzaileform
 
     "horniForm" => "Formulario del proveedor",
-    "telZen" => "Número de teléfono:",
-    "name" => "Nombre:",
-    "Nan" => "Número de identificación (NAN)",
+    "telZen" => "Número de teléfono",
+    "name" => "Nombre",
+    "Nan" => "DNI",
     "mota" => "Tipo de proveedor",
     "op1" => "Empresa",
     "op2" => "Persona",
     "Helb" => "Dirección",
     "Zerb" => "Servicio",
+    "Gorde" => "Guardar proveedor",
 
     //pasarela de pago
     "zureDatu" => "TUS DATOS",
     "nan" => "DNI",
     "herria" => "Ciudad:",
     "placeHolder" => "calle portal, piso casa",
-    "pais" => "País:",
-    "pk" => "Código Postal:",
+    "helbidea" => "Dirección",
+    "pais" => "País",
+    "pk" => "Código Postal",
     "OrdSek" => "SECCIÓN DE PAGO",
-    "TxartName" => "Nombre en la tarjeta:",
+    "TxartName" => "Nombre en la tarjeta",
     "txart" => "Tarjetas aceptadas",
-    "TxartZen" => "Número de tarjeta:",
+    "TxartZen" => "Número de tarjeta",
     "epemuga" => "Fecha de caducidad",
     "pagarPasarela" => "Pagar",
 
@@ -146,6 +153,8 @@ return[
     "Notiziak" => "Noticias",
     "Hornitzailea" => "Proveedores",
     "Fav" => "Favoritos",
-    "aldatu" => "Cambiar"
+    "aldatu" => "Cambiar",
+    "footer" => "2023 Hack-Ovo - Todos los derechos reservados",
+
 
 ];
