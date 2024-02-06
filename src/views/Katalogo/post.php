@@ -7,7 +7,7 @@
      switch($_POST["action"]){
         case "addInCart":{
             if(!isset($_SESSION[$_POST["indizea"]][$_POST["balioa"]])){
-                $_SESSION[$_POST["indizea"]][$_POST["balioa"]] = ["zenb" => 1, "titulo" => $_POST["titulua"]];
+                $_SESSION[$_POST["indizea"]][$_POST["balioa"]] = ["zenb" => 1, "titulo" => $_POST["titulua"], "marka" => $_POST["marca"], "modeloa" => $_POST["modelo"], "precioNum" => $_POST["precioZenb"]];
             }
             echo json_encode($_SESSION);
             break;

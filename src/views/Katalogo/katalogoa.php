@@ -280,6 +280,7 @@
     <?php
     if (!isset($_SESSION["cart"]) || count($_SESSION["cart"]) == 0) {
         echo "carrito-hidden";
+    
     }
     ?>
     " id="carrito">
@@ -295,8 +296,8 @@
                     echo '<div class="carrito-item">
                 <div class="carrito-item-detalles">
                     
-                    <p class="carrito-item-modelo"></p>
-                    <p class="carrito-item-marka"></p>
+                    <p class="carrito-item-modelo">' .  $item["modeloa"] . '</p>
+                    <p class="carrito-item-marka">' . $item["marka"] . '</p>
                     <p class="carrito-item-titulo">' . $item["titulo"] . '</p>
                     <div class="selector-cantidad">
                         <i class="fa-solid fa-minus restar-cantidad"></i>
@@ -305,7 +306,7 @@
                         <i class="fa-solid fa-plus sumar-cantidad"></i>
                     </div>
                     <p hidden class="id-elim">' . $id . '</p> 
-                    <span class="carrito-item-precio">0€</span>
+                    <span class="carrito-item-precio">'. $item["precioNum"] .'€ </span>
                 </div>
                 <button class="btn-eliminar">
                     <i class="fa-solid fa-trash"></i>

@@ -40,6 +40,10 @@ function guardarInfoCarritoEnSession(elem) {
     var item = $(elem).closest('.item');
     var id = item.find('.id-item').text();
     var titulo = item.find('p.titulo-item').text(); 
+    var marka = item.find('.marka-item').text();
+    var modeloa = item.find('p.modelo-item').text();
+    var precioNum = parseFloat(precio.replace('.', ','));
+    alert(precio);
 
     $.ajax({
             url: "post.php",
@@ -48,6 +52,9 @@ function guardarInfoCarritoEnSession(elem) {
                 action: "addInCart",
                 indizea: "cart",
                 titulua: titulo,
+                modelo: modeloa,
+                marca: marka,
+                precioZenb: precioNum,
                 balioa: id
             }
         })
@@ -63,7 +70,6 @@ function guardarNumeroEnSession(elem) {
     console.log($(elem).siblings());
     var cantidadActual = parseInt($(elem).siblings('.carrito-item-cantidad').val());
     var idActual = parseInt($(elem).siblings('p.carrito-item-id').text());
-
     $.ajax({
         url: "post.php",
         type: 'POST',
