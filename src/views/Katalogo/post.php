@@ -11,7 +11,7 @@
                 $_SESSION["carritoIdsArray"][] = $_POST["balioa"];
                 $_SESSION["carritoIds"] = implode(",", $_SESSION["carritoIdsArray"]);
             }
-            echo json_encode($_SESSION);
+            echo json_encode($SESSION);
             break;
         }
         case "changeNumberInCart":{
@@ -19,5 +19,19 @@
             echo json_encode($_SESSION);
             break;
         }
+        case "removeFromCart":{ 
+            if(isset($_POST["itemId"])) {
+                $itemIdToRemove = $_POST["itemId"];
+                $key = array_search($itemIdToRemove, $_SESSION['carritoIdsArray']);
+                if ($key !== false) {
+                    unset($_SESSION['cart'][$itemIdToRemove]);
+                    unset($_SESSION['carritoIdsArray'][$key]);
+                    $_SESSION["carritoIds"] = implode(",", $_SESSION["carritoIdsArray"]);
+                }
+                echo json_encode($_SESSION);
+            }
+            break;
+        }   
+        }
      }
- }
+ 

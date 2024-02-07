@@ -17,6 +17,9 @@ $(document).ready(function () {
         hacerVisibleCarrito();
     }
  
+    $(".btn-eliminar").on("click", function() {            
+        quitarCosasDeSession(this);
+    });
 
     // Agrego funcionalidad al botón sumar cantidad
     $('.sumar-cantidad').click(function () {
@@ -99,6 +102,27 @@ function guardarNumeroEnSession(elem) {
 
 }
 
+function quitarCosasDeSession(elem){
+
+    var item = $(elem).closest('.item');
+    var id = item.find('.id-elim').text();
+    
+
+    $.ajax({
+            url: "post.php",
+            type: 'POST',
+            data: {
+                action: "removeFromCart",
+                itemId: id,
+            }
+        })
+        .done(function (response) {
+            alert("Se ha eliminado correctamente");
+        })
+        .fail(function () {ç
+            alert("Error al eliminar elemento");
+        })
+}
 // Eliminamos todos los elementos del carrito y lo ocultamos
 function pagarClicked() {
 

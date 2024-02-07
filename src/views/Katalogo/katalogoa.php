@@ -95,7 +95,7 @@
     ?>
 
     <div class="search-form">
-        <input type="hidden" id="carritoVal" value="<?= $_SESSION["carritoIds"] ?? '' ?>">
+        <input type="hidden" id="carritoVal" value="<?= $_SESSION["carritoIds"] ?? "" ?>">
         <input aria-label="Bilatu" id="search-input" placeholder="<?= itzuli("buscador") ?>" class="search-input" value="">
         <button aria-label="Search" type="submit" class="search-button" id="search-button"><?= itzuli("BilatuButt") ?></button>
     </div>
@@ -284,11 +284,11 @@
         </div>
         <div class="carrito-items">
             <?php
-            if (isset($_SESSION["cart"]) && count($_SESSION["cart"]) > 0) {
+                if (isset($_SESSION["cart"]) && count($_SESSION["cart"]) > 0) {
 
 
                 foreach ($_SESSION["cart"] as $id => $item) {
-                    echo '<div class="carrito-item">
+                    echo '<div class="item carrito-item">
                 <div class="carrito-item-detalles">
                     
                     <p class="carrito-item-modelo">' .  $item["modeloa"] . '</p>
