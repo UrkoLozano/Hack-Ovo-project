@@ -18,14 +18,53 @@ define('APP_DIR', $_SERVER['DOCUMENT_ROOT'] . $KARPETA_DIR);
     $conn = null;
     $conn = connect($conn);
 
-    if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['NAN'])) {
-        $NAN = $_POST['NAN'];
+    if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['nan'])) {
+        $NAN = $_POST['nan'];
+    
+        // Preparar la consulta SQL
+        $sql = "INSERT INTO hackovo.eskariak (NAN, egoera) VALUES (?, 'Onartzeko')";
+        $stmt = $conn->prepare($sql);
+    
+        // Verificar si la preparación de la consulta tuvo éxito
+        if ($stmt) {
+            // Asociar parámetros y ejecutar la consulta
+            $stmt->bind_param("s", $NAN);
+            $stmt->execute();
+    
+            // Verificar si la ejecución de la consulta tuvo éxito
+            if ($stmt->affected_rows > 0) {
+            
+            } else {
+                echo "Error: No se pudo insertar el registro.";
+            }
+    
+            // Cerrar la declaración
+            $stmt->close();
+        } else {
+            echo "Error: No se pudo preparar la consulta.";
+        }
 
-        $sql = "INSERT INTO eskariak (NAN) VALUES ('$NAN')";
+        $sql= "SELECT COUNT(*) AS zenbat FROM eskariak";
         $stmt = $conn->prepare($sql);
 
-        $stmt->close();
+        $resultado = $conn->query($sql);
+
+        // Obtiene el resultado como un array asociativo
+        $fila = $resultado->fetch_assoc();
+
+        // Accede al valor de COUNT
+        $totala = $fila['zenbat'];
+        
+        $i=0;
+
+        while(count($_SESSION['cart']) > $i){
+            $sql = "INSERT INTO hackovo.faktura (id_eskaria, ErregistroID, kantitatea) VALUES ($totala, '{$_SESSION['carritoIdsArrays'][$i]}', '{$_SESSION['kantitateaArray'][$i]}')";
+            $stmt = $conn->prepare($sql);
+            // Ejecutar el SQL ...
+        }
+        
     }
+    
     $conn->close();
     ?>
     <div class="container">
@@ -37,29 +76,29 @@ define('APP_DIR', $_SERVER['DOCUMENT_ROOT'] . $KARPETA_DIR);
                     <h3 class="title"><?= itzuli("zureDatu") ?></h3>
                     <div class="inputBox">
                         <span><?= itzuli("nan") ?>:</span>
-                        <input type="text" required>
+                        <input type="text" id="nan" name="nan" required>
                     </div>
 
                     <div class="inputBox">
                         <span><?= itzuli("herria") ?>:</span>
-                        <input type="text" required>
+                        <input type="text">
                     </div>
 
                     <div class="inputBox">
                         <span><?= itzuli("helbidea") ?>:</span>
-                        <input type="text" placeholder="<?= itzuli("placeHolder") ?>" required>
+                        <input type="text" placeholder="<?= itzuli("placeHolder") ?>" >
                     </div>
 
                     <div class="flex">
                         <div class="flex">
                             <div class="inputBox">
                                 <span><?= itzuli("pais") ?>:</span>
-                                <input type="text" required>
+                                <input type="text" >
                             </div>
 
                             <div class="inputBox">
                                 <span><?= itzuli("pk") ?>:</span>
-                                <input type="text" required>
+                                <input type="text" >
                             </div>
                         </div>
                     </div>
@@ -70,7 +109,7 @@ define('APP_DIR', $_SERVER['DOCUMENT_ROOT'] . $KARPETA_DIR);
                     <h3 class="izenburua"><?= itzuli("OrdSek") ?></h3><br>
                     <div class="inputBox">
                         <span><?= itzuli("TxartName") ?>:</span>
-                        <input type="text" required>
+                        <input type="text" >
                     </div>
 
                     <div class="inputBox">
@@ -81,17 +120,17 @@ define('APP_DIR', $_SERVER['DOCUMENT_ROOT'] . $KARPETA_DIR);
 
                     <div class="inputBox">
                         <span><?= itzuli("TxartZen") ?>:</span>
-                        <input type="number" placeholder="1111 2222 3333 4444" required>
+                        <input type="number" placeholder="1111 2222 3333 4444" >
                     </div>
 
                     <div class="inputBox">
                         <span><?= itzuli("epemuga") ?> :</span>
-                        <input type="date" required>
+                        <input type="date" >
                     </div>
 
                     <div class="inputBox">
                         <span>CVV :</span>
-                        <input type="text" required>
+                        <input type="text" >
                     </div>
                 </div>
             </div>

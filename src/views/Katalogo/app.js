@@ -50,6 +50,7 @@ $(document).ready(function () {
 function guardarInfoCarritoEnSession(elem) {
     //Bidali nahi den informazioa LORTU
     var item = $(elem).closest('.item');
+    var kantitatea = item.find('.id-elim').text();
     var id = item.find('.id-item').text();
     var titulo = item.find('p.titulo-item').text(); 
     var marka = item.find('.marka-item').text();
@@ -69,7 +70,8 @@ function guardarInfoCarritoEnSession(elem) {
                 marca: marka,
                 precioZenb: precioNum,
                 prezioa: precio,
-                balioa: id
+                balioa: id,
+                kantitatea: kantitatea
             }
         })
         .done(function (itzultzenDuena) {
