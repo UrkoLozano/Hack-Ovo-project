@@ -9,6 +9,15 @@ $(document).ready(function () {
     // Agregamos funcionalidad a los botones eliminar del carrito
     $('.btn-eliminar').click(eliminarItemCarrito);
 
+    if($("#carritoVal").val() != ""){
+        //TODO: GARATZEKO
+        carritoIds = $("#carritoVal").val();
+        carritoIds = carritoIds.split(","); //Array-a bihurtu nahi dug
+        console.log(carritoIds);
+        hacerVisibleCarrito();
+    }
+ 
+
     // Agrego funcionalidad al botón sumar cantidad
     $('.sumar-cantidad').click(function () {
         sumarCantidad(this);
@@ -42,6 +51,7 @@ function guardarInfoCarritoEnSession(elem) {
     var titulo = item.find('p.titulo-item').text(); 
     var marka = item.find('.marka-item').text();
     var modeloa = item.find('p.modelo-item').text();
+    var precio = item.find('.precio-item').text();
     var precioNum = parseFloat(precio.replace('.', ','));
     alert(precio);
 
@@ -55,6 +65,7 @@ function guardarInfoCarritoEnSession(elem) {
                 modelo: modeloa,
                 marca: marka,
                 precioZenb: precioNum,
+                prezioa: precio,
                 balioa: id
             }
         })
@@ -109,11 +120,12 @@ function agregarAlCarritoClicked(elem) {
     var precioNum = parseFloat(precio.replace('.', ','));
     var modeloa = item.find('.modelo-item').text();
     var id = item.find('.id-item').text();
+    alert(id);
     var marka = item.find('.marka-item').text();
 
     // Verificamos si el ID ya está en el carritoIds
     if (carritoIds.includes(id)) {
-        return;
+        return "";
     }
 
     // Agregamos el ID al array de IDs del carrito

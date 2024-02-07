@@ -95,6 +95,7 @@
     ?>
 
     <div class="search-form">
+        <input type="hidden" id="carritoVal" value="<?= $_SESSION["carritoIds"] ?? '' ?>">
         <input aria-label="Bilatu" id="search-input" placeholder="<?= itzuli("buscador") ?>" class="search-input" value="">
         <button aria-label="Search" type="submit" class="search-button" id="search-button"><?= itzuli("BilatuButt") ?></button>
     </div>
@@ -246,6 +247,7 @@
                         </div>
                     <p hidden class='id-item'>" . $row["ErregistroID"] . "</p> 
                     <button class='boton-item' data-erregistro-id='" . $row["ErregistroID"] . "'>" . itzuli("SaskiButt") . "</button>
+                    
                 </div>";
                     }
                 } else {
@@ -276,14 +278,7 @@
     </script>
     </div>
     <!-- Carrito de Compras -->
-    <div class="carrito 
-    <?php
-    if (!isset($_SESSION["cart"]) || count($_SESSION["cart"]) == 0) {
-        echo "carrito-hidden";
-    
-    }
-    ?>
-    " id="carrito">
+    <div class="carrito" id="carrito">
         <div class="header-carrito">
             <h2><?= itzuli("saskia") ?></h2>
         </div>
@@ -306,7 +301,7 @@
                         <i class="fa-solid fa-plus sumar-cantidad"></i>
                     </div>
                     <p hidden class="id-elim">' . $id . '</p> 
-                    <span class="carrito-item-precio">'. $item["precioNum"] .'€ </span>
+                    <span class="carrito-item-precio">'. $item["precio"] .' </span>
                 </div>
                 <button class="btn-eliminar">
                     <i class="fa-solid fa-trash"></i>
