@@ -1,8 +1,8 @@
 <?php
 
-$KARPETA_DIR = "/VisualStudios/Hack-OVO";
+$KARPETA_DIR = "/GarapenIngurunea/Hack-OVO/Hack-OVO-project";
 define('APP_DIR', $_SERVER['DOCUMENT_ROOT'] . $KARPETA_DIR);
-require_once(APP_DIR . "/src/require/layoutTop.php");
+    require_once(APP_DIR . "/src/require/layoutTop.php");
 ?>
 
     <style>
