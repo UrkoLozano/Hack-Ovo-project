@@ -6,8 +6,8 @@
  if(isset($_POST["action"])){
      switch($_POST["action"]){
         case "addInCart":{
-            if(!isset($_SESSION[$_POST["indizea"]][$_POST["balioa"]])){
-                $_SESSION[$_POST["indizea"]][$_POST["balioa"]] = [
+            if(!isset($_SESSION[$_POST["indizea"]][$_POST["id"]])){
+                $_SESSION[$_POST["indizea"]][$_POST["id"]] = [
                     "zenb" => 1, 
                     "titulo" => $_POST["titulua"], 
                     "marka" => $_POST["marca"], 
@@ -15,7 +15,7 @@
                     "precio" => $_POST["prezioa"], 
                     "precioNum" => $_POST["precioZenb"]
                 ];
-                $_SESSION["carritoIdsArray"][] = $_POST["balioa"];
+                $_SESSION["carritoIdsArray"][] = $_POST["id"];
                 $_SESSION["carritoIds"] = implode(",", $_SESSION["carritoIdsArray"]);
                 
                 // Guardar la cantidad en el array kantitateaArray
@@ -25,13 +25,13 @@
             break;
         }
         case "changeNumberInCart":{
-            $_SESSION[$_POST["indizea"]][$_POST["balioa"]]["zenb"] = $_POST["zenbatekoa"];
-            $_SESSION["carritoKantitateaArray"][][$_POST["balioa"]] = $_POST["zenbatekoa"];
+            $_SESSION[$_POST["indizea"]][$_POST["id"]]["zenb"] = $_POST["zenbatekoa"];
+            $_SESSION["carritoKantitateaArray"][][$_POST["id"]] = $_POST["zenbatekoa"];
             while(count($_SESSION["carritoKantitateaArray"]) > $i){
-                if($_SESSION["carritoKantitateaArray"][$i][$_POST["balioa"]] > $_POST["zenbatekoa"]){
+                if($_SESSION["carritoKantitateaArray"][$i][$_POST["id"]] > $_POST["zenbatekoa"]){
 
                 } else{
-                    $_SESSION["carritoKantitateaArray"][$i][$_POST["balioa"]] = $_POST["zenbatekoa"];
+                    $_SESSION["carritoKantitateaArray"][$i][$_POST["id"]] = $_POST["zenbatekoa"];
                 }
             }
            

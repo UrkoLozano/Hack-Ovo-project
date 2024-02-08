@@ -6,13 +6,20 @@ var carritoIds = [];
 
 // Esperamos a que todos los elementos de la página carguen para ejecutar el script
 $(document).ready(function () {
+
     // Agregamos funcionalidad a los botones eliminar del carrito
     $('.btn-eliminar').click(eliminarItemCarrito);
 
-    if($("#carritoVal").val() != ""){
-        //TODO: GARATZEKO
-        carritoIds = $("#carritoVal").val();
-        carritoIds = carritoIds.split(","); //Array-a bihurtu nahi dug
+    if($("#carritoVal").val() != "" && $("#carritoVal").val() != undefined){
+        //TODO: URKO IKUSTEKO AER ONDO DABILEN
+        var carritoIds = [];
+        var carritoIdsString = $("#carritoVal").val();
+
+        if (carritoIdsString) {
+            var carritoIds = carritoIdsString.split(",");
+        } else {
+            console.log("carritoIdsString no está definida o es undefined");
+        }
         console.log(carritoIds);
         hacerVisibleCarrito();
     }
@@ -45,6 +52,20 @@ $(document).ready(function () {
         window.location.href = "../gurisaldu.php";
     });
 
+    
+    $(".submit-btn").click(function(e){
+        //TODO: Konprobatu ea datuak sartuta dauden
+
+        //Ajax dei bat egin informazio guztiarekin
+        e.preventDefault();
+
+        $("#ordaindu1").css("display", "none");
+        $("#ordaindu2").css("display", "block");
+        alert("hona dator");
+
+        //codigoAlPagar();
+    });
+
 });
 
 function guardarInfoCarritoEnSession(elem) {
@@ -70,7 +91,7 @@ function guardarInfoCarritoEnSession(elem) {
                 marca: marka,
                 precioZenb: precioNum,
                 prezioa: precio,
-                balioa: id,
+                id: id,
                 kantitatea: kantitatea
             }
         })
@@ -92,7 +113,7 @@ function guardarNumeroEnSession(elem) {
         data: {
             action: "changeNumberInCart",
             indizea: "cart",
-            balioa: idActual,
+            id: idActual,
             zenbatekoa: cantidadActual
         }
     })
@@ -125,6 +146,38 @@ function quitarCosasDeSession(elem){
             alert("Error al eliminar elemento");
         })
 }
+
+function codigoAlPagar(){
+
+        // Serializa los datos del formulario
+        var formData = $(this).serialize();
+
+        // Realiza la solicitud AJAX
+        $.ajax({
+            type: "POST",
+            url: "Ordaindu.php", // Reemplaza esto con la ruta correcta a tu archivo PHP
+            data: formData,
+            dataType: "json",
+            success: function(response) {
+                //TODO: ERAKUTSI EDO EZKUTATU PANTAILAK
+
+                // Maneja la respuesta del servidor
+                if (response.code == "200") {
+                    // Si la respuesta es exitosa, muestra el mensaje de éxito
+                    alert("Zuzenki gehitu da: " + response.message);
+                } else {
+                    // Si la respuesta indica un error, muestra el mensaje de error
+                    alert("Error: " + response.message);
+                }
+            },
+            error: function(xhr, status, error) {
+                // Maneja los errores de la solicitud AJAX
+                alert("Error al procesar la solicitud AJAX: " + error);
+            }
+        });
+}
+
+
 // Eliminamos todos los elementos del carrito y lo ocultamos
 function pagarClicked() {
 
