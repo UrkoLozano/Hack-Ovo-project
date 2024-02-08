@@ -49,25 +49,36 @@ define('HREF_SRC', $KARPETA_DIR . "/src");
             die;
         }
 
-        foreach($_SESSION['cart'] as $index => $subArray){
-            $id = $index;
-            $zenb = $subArray["zenb"];
+        $sql = "SELECT id_eskaria FROM eskariak ORDER BY id_eskaria DESC LIMIT 1";
+        $result = $conn->query($sql);
 
-            
+        // Verificar si la consulta fue exitosa
+        if ($result->num_rows > 0) {
+            // Obtener el resultado como un array asociativo
+            $row = $result->fetch_assoc();
+
+            // Almacenar el valor en una variable
+            $id_eskaria = $row['id_eskaria'];
+
+           
+           
+        } else {
+            echo "No se encontraron resultados";
         }
 
-        $sql = "SELECT * FROM hackovo.eskariak ORDER BY id_eskaria DESC LIMIT 1;";
-        $stmt = $conn->prepare($sql);
+        
+        foreach ($_SESSION['cart'] as $i => $zenbakia) {
+            $id = $i;
+            $zenb = $zenbakia['zenb'];
+        
+            $sql = "INSERT INTO hackovo.faktura (id_eskaria , ErregistroID, kantitatea) VALUES (?,?, ?)";
 
-        $resultado = $conn->query($sql);
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("iii",$id_eskaria ,$i, $zenb); 
+            $stmt->execute();
+        }
 
-        // Obtiene el resultado como un array asociativo
-        $fila = $resultado->fetch_assoc();
-
-        $codCompra = $fila["id_eskaria"];
-
-        echo json_encode(["code" => "200", "message" => $codCompra]);
-        die;
+        //unset($_SESSION);
     }
 
     $conn->close();
@@ -141,7 +152,7 @@ define('HREF_SRC', $KARPETA_DIR . "/src");
                 </div>
                 <br>
 
-                <button type="submit" class="submit-btn"><?= itzuli("pagar") ?></button>
+                <button type="submit" href="../Katalogo/katalogoa.php" class="submit-btn"><?= itzuli("pagar") ?></a></button>
             </form>
         </div>
 

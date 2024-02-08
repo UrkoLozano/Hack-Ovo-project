@@ -85,6 +85,7 @@
             display: block;
             color: red;
         }
+
     </style>
 </head>
 
@@ -317,7 +318,7 @@
                 <span name="carrito-precio-total" class="carrito-precio-total">
                 </span>
             </div>
-            <button class="btn-pagar"><a href="../Ordaindu/Ordaindu.php"><?= itzuli("pagar") ?></a><i class="fa-solid fa-bag-shopping"></i> </button>
+            <button class="ordaindubtn" href="../Ordaindu/Ordaindu.php"><?= itzuli("pagar") ?><i class="fa-solid fa-bag-shopping"></i></button>
         </div>
     </div>
 

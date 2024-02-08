@@ -1,6 +1,6 @@
 <?php
 
-$KARPETA_DIR = "/VisualStudios/Hack-OVO";
+$KARPETA_DIR = "/GarapenIngurunea/Hack-OVO/Hack-Ovo-project";
 define('APP_DIR', $_SERVER['DOCUMENT_ROOT'] . $KARPETA_DIR);
     require_once(APP_DIR . "/src/require/layoutTop.php");
 ?>
@@ -277,6 +277,22 @@ define('APP_DIR', $_SERVER['DOCUMENT_ROOT'] . $KARPETA_DIR);
         }
 
         .carrito-total .btn-pagar {
+            display: block;
+            width: 100%;
+            border: none;
+            background: #000;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 18px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .carrito-total .ordaindubtn {
             display: block;
             width: 100%;
             border: none;

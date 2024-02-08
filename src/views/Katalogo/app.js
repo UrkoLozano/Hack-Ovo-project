@@ -52,6 +52,9 @@ $(document).ready(function () {
         window.location.href = "../gurisaldu.php";
     });
 
+    $('.ordaindubtn').click(function () {
+        window.location.href = "../Ordaindu/Ordaindu.php";
+    });
     
     $(".submit-btn").click(function(e){
         //TODO: Konprobatu ea datuak sartuta dauden
